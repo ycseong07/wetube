@@ -1,2 +1,2 @@
 # wetube
-Cloneing youtube with Vanilla and NodeJS
+Cloning youtube with Vanilla and NodeJS
