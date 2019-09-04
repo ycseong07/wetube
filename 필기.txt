@@ -2,3 +2,39 @@
 non-interactive ---- interactive
 interactive하다면 웹앱을 골라야하고, 바닐라 js보다는 react같은게 적절함.
 js는 브라우저에 내장되어있음.
+
+require?
+node module을 어딘가에서 가져오는거임.
+처음엔 내 작업폴더 속, 그다음엔 node_modules 폴더
+그 안에도 require있고.. 계속..
+
+* 깃허브 사용
+ - (프로젝트 폴더에서) git init
+ - 깃허브에서 repository 생성
+ - node_module을 ignore
+   - .gitignore 파일 생성
+   - node_modules 작성
+   - gitignore nodejs 검색해서 나온 코드 복사붙여넣기
+   - package-lock.json도 추가 (패키지 보안 관련)
+ - README.md 파일 생성
+ - git remote add origin (github 저장소 주소)
+ - git add .
+ - git commit -m "Initial Commit"
+ - git push origin master
+
+* 서버 만들기
+ - express 코드
+   - const express = require('express') : node module을 가져오기(import)
+     - 내 폴더에서 찾고, 없으면 node_modules에서 찾음
+   - const app = express() : application 생성
+   - app.listen(4000) : 4000번 포트 리슨 명령
+   - 터미널에서 node index.js
+   - 브라우저에서 localhost:4000
+   - app.listen(4000)을 콜백으로 만들기
+     - app.listen(4000, handleListening)
+   - const PORT = 4000;
+ - package.json을 중앙컨트롤타워로 만들기
+   - package.json에 "scripts":{"start":"node index.js"} 추가 -> npm start 명령으로 서버 실행 가능
+
+
+   문자열 안에 변수넣을때 `(~키)로 묶고 ${변수명} 하면 댐
