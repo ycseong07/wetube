@@ -1,0 +1,4 @@
+웹사이트 ----- 웹어플리케이션
+non-interactive ---- interactive
+interactive하다면 웹앱을 골라야하고, 바닐라 js보다는 react같은게 적절함.
+js는 브라우저에 내장되어있음.
