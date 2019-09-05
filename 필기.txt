@@ -38,3 +38,76 @@ node module을 어딘가에서 가져오는거임.
 
 
    문자열 안에 변수넣을때 `(~키)로 묶고 ${변수명} 하면 댐
+
+   [GET, POST]
+기본적으로 브라우저가 페이지를 읽어올 때 GET방식으로..
+로그인같은 정보가 담겨있을 땐 POST방식으로 
+
+예를 들어 영상에 코멘트를 달 때에는 POST로  
+
+
+RESPONSE는 요청을 받으면 응답을 해야한다. 
+
+
+================================
+function handleHome(req, res){
+    res.send('Hello from home');
+}
+
+app.get("/", handleHome);
+====================================
+function handleProfile(req, res){
+    res.send("You are on my profile")
+}
+
+app.get("/profile", handleProfile);
+============================
+
+보통 웹사이트에 데이터를 주고받을 때 request / respose object가 작동하는데, 
+누가 페이지를 요청했는지나 어떤 데이터가 페이지로 전송됐는지 등에 대해
+우리가 정보를 얻고자 하면 request를 이용할 것임.
+만약 누군가 post로 아이디, 비번을 보낸다면 서버에서는 request로 받을 수 있음.
+
+웹사이트처럼 페이지이동을 하고싶게 하려면 res.send("text") 가 아닌 
+완전한 html, css 파일을 send해줘야한다.  
+이것이 이번 코스에서 배우게 될 것. 이것이 기본적인 동작 방법
+
+서버를 생성하고 route를 생성하고 그에 대해 응답한다. 
+
+express 와 node.js로 간단하게 할 수 있다.
+
+* Babel
+ : 최신의 JS코드(ES6)를 예전의(표준) JS코드로 변환해줌 = nodeJS에서 최신의 코드를 사용할 수 있게 함
+ - 사용 방법
+   1) Babel node
+     - npm install @babel/node
+ - 다양한 Stage(버전?) 존재
+   - 우리는 env 사용 : 최신이면서 안정적
+   - npm install @babel/preset-env
+   - npm install @babel/core 
+ - .babelrc 파일 생성
+   - { "presets": ["@babel/preset-env"]
+ - 새 문법
+   - require -> import ~ from
+   - node index.js -> babel-npde index.js
+   - function ~ -> const ~ = ( , ) => ~;    // arrow function
+
+   babelrc에는 ndoejs, js, react등의 필요한 설정을 집어넣을것임. 
+
+* nodemon
+ : 파일 저장할 때마다 서버를 재실행
+ - npm install nodemon -D // 프로젝트 dependency와 상관없이 설치
+ - babel-node index.js -> nodemon --exec babel-node index.js
+
+
+* 서버 재시작 딜레이 시간 주기
+ - node --exec babel-node index.js --delay 2
+
+* express
+ - middleware
+   - 처리가 끝날 때까지 연결되어 있는
+   - 유저의 요청과 서버의 응답 사이에 있는 것
+   - express에서의 모든 함수는 middleware가 될 수 있음
+     get 함수의 인자를 3개 주고 2번째에 middleware 함수를 넣으면 됨
+     마지막 함수는 res.send 해야 웹사이트가 로딩중이지 않음
+   - 모든 요청에 미들웨어 설정 방법 : app.use(); // get함수(route 처리) 이전에 먼저 설정

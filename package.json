@@ -4,9 +4,21 @@
   "description": "Cloneing youtube with Vanilla and NodeJS",
   "author": "ycseong",
   "dependencies": {
-    "express": "^4.17.1"
+    "@babel/core": "^7.5.5",
+    "@babel/node": "^7.5.5",
+    "@babel/runtime-corejs3": "^7.5.5",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.4",
+    "core-js": "^3.2.1",
+    "express": "^4.17.1",
+    "helmet": "^3.21.0",
+    "morgan": "^1.9.1"
   },
-  "scripts":{
-    "start": "node index.js"
+  "scripts": {
+    "start": "nodemon --exec babel-node index.js --delay 2"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.5.5",
+    "nodemon": "^1.19.2"
   }
 }
