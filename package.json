@@ -12,10 +12,11 @@
     "core-js": "^3.2.1",
     "express": "^4.17.1",
     "helmet": "^3.21.0",
-    "morgan": "^1.9.1"
+    "morgan": "^1.9.1",
+    "node.js": "0.0.0"
   },
   "scripts": {
-    "start": "nodemon --exec babel-node index.js --delay 2"
+    "start": "nodemon --exec babel-node init.js --delay 2"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.5.5",

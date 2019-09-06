@@ -111,3 +111,68 @@ express 와 node.js로 간단하게 할 수 있다.
      get 함수의 인자를 3개 주고 2번째에 middleware 함수를 넣으면 됨
      마지막 함수는 res.send 해야 웹사이트가 로딩중이지 않음
    - 모든 요청에 미들웨어 설정 방법 : app.use(); // get함수(route 처리) 이전에 먼저 설정
+
+만약 미들웨어에서 route 전에 먼저 next 대신 res.send 를 보내면 연결을 끊을 수 있음. 
+
+* express router
+ - route들의 복잡함을 쪼개어 단순화
+ - router = 많은 route들이 담긴 파일
+ - router.js 생성
+   - import express from "express"
+   - export const userRouter = express.Router(); // 파일로(X) 변수로(O) export
+
+app.use("/user", userRouter);
+   app.get 이 아닌 use는 누군가 /user 경로에 접속하면 userRouter에 있는 route 전체를 사용할 수 있게 하겠다는 것
+   
+
+*MVC 패턴
+ - Model(데이터, DB), View(데이터의 생김새, template) Controller(데이터를 찾는 함수)의 약자
+ - 패턴 : 구조
+ - 방법
+   1. 데이터 모습에 맞게 URL(router)과 함수(Controller) 분리
+     - app.js의 get 호출, handler 삭제
+     - router.js -> userRouter.js 이름 변경
+     - videoRouter.js 생성
+     - routers 폴더 생성, router들 넣기
+     - userRouter.js : get 호출 삭제
+     - userRouter.js, videoRouter.js : 파일로 export(export default ~)
+     - app.js
+       - import userRouter & videoRouter
+       - app.use("/user", userRouter); app.use("/video", videoRouter);
+     - globalRouter.js 생성
+       - export default globalRouter 하도록 코드 작성
+       - app.js
+         - app.use("/", globalRouter) 하도록 import하고 코드 작성
+
+
+단어 클릭하고 ctrl D 하면 해당단어 한버넹 바꿀 수 있다.
+
+export default? 파일로 export하는거
+export const ~ 는 그 변수만 export한다는거
+
+
+* URL 만들기
+ - 프로젝트 폴더에 routes.js 생성(어디서든 모든 URL을 불러 쓸 수 있게)
+   - URL 관련 상수 선언(6분21초)
+     - URL 문자열 안에 콜론 쓰면 express가 변수 처리함
+   - route 객체 생성(7분12초)
+ - app.js : import routes from "./routes.js";
+   - app.use("/", ~) 에서 / &/user & /video 대신 routes.home &  routes.users & route.video로 변경
+ - globalRouter.js
+   - import routes from "../routes";
+   - globalRouter.get(routes.home, (req, res) => res.send('Home'));
+   - join, login, logout, search도 작성(9분29초)
+
+
+const USERS_DETAIL = "/:id"; ->express에서 : 뒤에오는 값은 변화하는 값이라고 인식함.
+
+../routes ? 이 디렉토리 밖으로 나간다
+
+..const routes에서 선언한 변수명과 다른 router에서 쓰인 property명이 다르면 
+C:\Users\syc\Documents\WeTube\node_modules\path-to-regexp\index.js:63
+  path = ('^' + path + (strict ? '' : path[path.length - 1] === '/' ? '?' : '/?'))
+                                                ^
+
+TypeError: Cannot read property 'length' of undefined
+
+이런 에러남.....ㅅㅂ...
