@@ -176,3 +176,28 @@ C:\Users\syc\Documents\WeTube\node_modules\path-to-regexp\index.js:63
 TypeError: Cannot read property 'length' of undefined
 
 이런 에러남.....ㅅㅂ...
+
+export한 변수가 있으면 다른 파일에서도 그 변수명 쳤을때 네모 안 두줄 있는거 누르면 auto import가 됨.
+
+export const join = (req, res) => res.send("Join");
+arrow function에는 implicit return 이라는게 있는데, 
+
+function lala () {
+  return true
+}
+
+이걸
+
+const lala = () => true;
+
+이렇게 쓸 수 있음. 리턴 표시 없이.
+근데 만약 중괄호를 쓴다면 표기해줘야함.
+
+const lala = () => {
+  return true;
+}
+이렇게
+
+
+pug?
+express에서 view를 다루는 방식중의 하나인데, res.send 대신 html을 전달할 수 있게 해줌

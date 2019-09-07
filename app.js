@@ -7,7 +7,7 @@ import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
 import globalRouter from "./routers/globalRouter";
 import routes from "./routes";
-const app = express();
+const app = express(); // express를 실행한 결과를 app 상수로 만듦.
 
 app.use(cookieParser());
 app.use(bodyParser.json());
