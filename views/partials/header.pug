@@ -1,9 +1,11 @@
-//- 여기에는 모든 링크들이 들어갈거임
 header.header   
-    .header_column
+    .header__column
         a(href=routes.home)
             i.fab.fa-youtube
-    .header_column
+    .header__column
+        form(action=routes.search, method="get")
+            input(type="text", placeholder="Search...", name="term")
+    .header__column
         ul  
             li
                 a(href=routes.join) Join

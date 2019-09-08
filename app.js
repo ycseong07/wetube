@@ -8,7 +8,7 @@ import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
 import globalRouter from "./routers/globalRouter";
 import routes from "./routes";
-const app = express(); // express를 실행한 결과를 app 상수로 만듦.
+const app = express();
 
 app.use(helmet());
 app.set("view engine", "pug");
@@ -19,8 +19,8 @@ app.use(morgan("dev"));
 
 app.use(localMiddleware, localMiddleware);
 
-app.use(routes.home, globalRouter); //global router - /join, /login, /home ...
+app.use(routes.home, globalRouter);
 app.use(routes.users, userRouter);
 app.use(routes.videos, videoRouter);
 
-export default app; //이 파일을 부르면 app obj를 주겠다. 위의 app.~ 라고 적혀있는거
+export default app;
