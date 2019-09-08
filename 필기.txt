@@ -201,3 +201,66 @@ const lala = () => {
 
 pug?
 express에서 view를 다루는 방식중의 하나인데, res.send 대신 html을 전달할 수 있게 해줌
+
+- app.set()(application 설정 함수)를 사용하여 view engine을 undefined에서 pug로 변경
+   - pug & express의 view 파일들 위치 경로를 바꾸려면 set 함수의 name으로 'views' 주면 됨
+   - default는 views 폴더이므로 우리는 views 폴더 생성
+     - home.pug 생성
+ - 문법
+   - p : html p태그 생성
+ - controller에서 send 대신 render( 문자열)
+
+ * Pug : HTML CSS를 논리적으로 작업 가능 & <>대신 들여쓰기 사용
+ - views 폴더에 layouts 폴더 생성
+   - layout 파일 생성
+     - main.pug : 공통으로 적용될 html, head, header, footer, css link 등의 코드
+       - block : 다른 레이아웃이 들어갈 자리
+         - 레이아웃 사용 방법 : block에 들어갈 레이아웃 파일 제일 위에 extension(기본 템플릿을 이 파일에 끌어와서 확장해서 사용하겠다)
+           - extends layouts/main.pug
+           - block content에 들여쓰기 해서 내용 작성
+
+* partials : 페이지의 일부분
+ - views 폴더에 partials 폴더 생성
+   - footer.pug, header.pug 생성
+     - fontawesome 설치 : main.pug head에 코드 복사(git commit 참고)
+   - footer.pug 작성 후 main.pug의 footer 자리에 include ../partials/footer
+
+* pug에 자바스크립트 코드 작성하기 : #{ } 안에 쓰기
+#{} is the pug way
+${} is the ES6 way
+
+Block is when we want to be able to put something inside of a space previously created.
+Include just adds some HTML.
+Block is used as a way of adding dynamic content to a template, like on this example the layout.pug has some defined HTML and a block called content.
+In this case when I use the block 'content' I'm putting it inside of the previously defined block by my layout.
+
+* 템플릿에 컨트롤러 정보 추가
+ - 템플릿 전체에 추가하기
+   - ex) 헤더라 라우트 객체에 접근
+     - locals 미들웨어 만들어 사용 : local 변수를 global 변수로 사용하게 함
+       - res.locals.변수명 = 정보
+       - pug 파일에서 #{변수명}으로 사용 가능
+
+
+app.use((req, res, next) => {
+    
+})
+
+===
+
+app.use(function(req, res, next){
+
+})
+
+===
+
+const localMiddleware = (req, res, next) => {
+
+}
+
+p= , p#{} 차이
+p=potato is the same as p #{potato}
+If you only want to put one variable inside of an element all you do is =
+But if you want to add something more than one variable combined with text
+p Hello this is #{potato}
+
