@@ -264,3 +264,16 @@ If you only want to put one variable inside of an element all you do is =
 But if you want to add something more than one variable combined with text
 p Hello this is #{potato}
 
+* mixin: 웹사이트에서 자주 반복되는 html 코드를 재활용하는 방법
+ - pug 함수의 일종
+   - 인자 1개 필요
+..다른정보, 같은 구조!
+
+videoBlcok 파일에어 어떻게 아래처럼 videoFile에 접근 가능한가?
+video.videoBlock__thumbnail(src=video.videoFile)
+videoBlock은 home에서 사용되고있다. home에서 .videos 를 가져오고 있고, 이건 middlewares.js에서 res.locals.routes = routes; 를 써서
+local 변수를 global 변수로 사용하게 했다! routes에는 videos가 있음. 근데 이건 어떻게 db랑 연결이 되지? 비디오라우터에서 video변수를 빼고,
+대신 db에서 videos를 export해서 그걸 가져다 쓸 수 있는거네
+
+get route의 argument?
+get(url, controller)
