@@ -3,6 +3,9 @@ non-interactive ---- interactive
 interactive하다면 웹앱을 골라야하고, 바닐라 js보다는 react같은게 적절함.
 js는 브라우저에 내장되어있음.
 
+nodeJS?
+자바스크립트를 브라우저 밖으로 가져와서 활용할 수 있도록 함.
+
 require?
 node module을 어딘가에서 가져오는거임.
 처음엔 내 작업폴더 속, 그다음엔 node_modules 폴더
@@ -277,3 +280,20 @@ local 변수를 global 변수로 사용하게 했다! routes에는 videos가 있
 
 get route의 argument?
 get(url, controller)
+
+MongoDB?
+NoSQL인 Database(C++), mongoose를 통해 database와 javascript를 연결할 수 있음.
+NoSQL이어서 규칙이 적고 유연, 수정 가능성이 많음.
+relationship이 없다면 mongoDB는 좋은 선택! 예를 들어 채팅앱같은.
+트랜잭션이 필요한 경우에는 부적합하다. (ex. 금융, 결제, 회원정보 등)
+
+dotenv? 
+
+dotenv가 nodejs서버의 환경변수
+
+.env파일에서는 변수명 뒤에 세미콜론을 입력하면 안됨.
+
+model?
+mongDB한테 우리의 파일은 video라는 이름을 가질거고, 모든 비디오들은 string type을 가질거고,
+video는 view를 가질거고 ..등등을 알려줌.
+
