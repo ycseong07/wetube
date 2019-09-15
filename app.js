@@ -12,6 +12,8 @@ const app = express();
 
 app.use(helmet());
 app.set("view engine", "pug");
+// 누군가 /uploads로가면 'uploads'라는 디렉토리로 들어가진다
+app.use("/uploads", express.static("uploads"));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

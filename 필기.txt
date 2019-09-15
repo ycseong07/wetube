@@ -297,3 +297,30 @@ model?
 mongDB한테 우리의 파일은 video라는 이름을 가질거고, 모든 비디오들은 string type을 가질거고,
 video는 view를 가질거고 ..등등을 알려줌.
 
+video comment를 만드는 두가지 방법
+Commend ID들을 array로 video에 집어넣든가,
+Video ID를 Comment에 주든가
+
+
+console.log(file, title, description); - 파일 자체의 정보
+console.dir(file, title, description); - 파일 자체의 로케이션
+
+multer?
+middleware고, 함수를 사용해 file의 URL을 반환할거임
+
+
+videoContriller에서 
+
+export const postUpload = (req, res) => {
+  const {
+    body: { file, title, description }
+  } = req;
+
+  이렇게하면 body라는 변수는 존재하지 않음. file, title, description가 존재.
+  마지막으로 정의한 변수가 존재하는 거임.
+
+
+mongodb의 database 이름을 콘솔창에서 보려면 show dbs
+wetube가 있는데 이게 어디서 설정된거냐
+.env에서 MONGO_URL="mongodb://localhost:27017/wetube" 여기...
+
