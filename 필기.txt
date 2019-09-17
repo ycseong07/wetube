@@ -480,3 +480,33 @@ string으로부터 무언가를 가져오는것.
 여러 종류가 있음.
 
 webpack? module bundler
+exported configuration object를 찾음....?
+server code와는 연관 x, 100% client code.
+(Client code is what the user will download when he goes to our page. Client code is html/css/img/js etc.)
+babel-node는 못쓰고, 예전 js를 써야함.
+
+entry-파일들이 어디서 왔는가?
+output-그걸 어디에 넣을것인가?
+
+
+webpack 실행오류..
+4.1까지 듣고 webpack 실행하니까
+'WEBPACK_ENV'은(는) 내부 또는 외부 명령, 실행할 수 있는 프로그램, 또는
+배치 파일이 아닙니다.
+이럼서안됨
+
+-->
+
+package.json의 아래부분을
+"dev:assets": "WEBPACK_ENV=development webpack",
+    "build:assets": "WEBPACK_ENV=production webpack"
+
+이렇게 바꾸니까 됨.
+"dev:assets": "webpack --evn.WEBPACK_ENV=development",
+    "build:assets": "webpack --evn.WEBPACK_ENV=production"
+
+
+    "dev:assets": "webpack --evn.WEBPACK_ENV=development -w",
+    이렇게 하면 watch - 수정,재시작 안해도됨.
+
+    

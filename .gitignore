@@ -92,3 +92,4 @@ typings/
 #package security
 package-lock.json
 videos
+static
