@@ -1,23 +1,31 @@
 import routes from "../routes";
+import User from "../models/User";
 
 // Join
 export const getJoin = (req, res) => {
   res.render("join", { pageTitle: "Join" });
 };
 
-export const postJoin = (req, res) => {
+export const postJoin = async (req, res) => {
   const {
     body: { name, email, password, password2 }
-  } = req; // body parsor덕에 정보모으기 가능
+  } = req;
   if (password !== password2) {
     res.status(400);
-    res.render("Join", { pageTitle: "Join" });
+    res.render("join", { pageTitle: "Join" });
   } else {
-    // To Do: Register user
-    // To Do: Log user in
+    try {
+      const user = await User({
+        name,
+        email
+      });
+      await User.register(user, password);
+    } catch (error) {
+      console.log(error);
+    }
+    // To Do: Log user in``
     res.redirect(routes.home);
   }
-  res.render("join", { pageTitle: "Join" });
 };
 
 //Login

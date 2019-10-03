@@ -114,6 +114,8 @@ express 와 node.js로 간단하게 할 수 있다.
      get 함수의 인자를 3개 주고 2번째에 middleware 함수를 넣으면 됨
      마지막 함수는 res.send 해야 웹사이트가 로딩중이지 않음
    - 모든 요청에 미들웨어 설정 방법 : app.use(); // get함수(route 처리) 이전에 먼저 설정
+routes는 일종의 middleware고 , 차이는 routes는 res, middleware는 next를 호출한다는 것
+
 
 만약 미들웨어에서 route 전에 먼저 next 대신 res.send 를 보내면 연결을 끊을 수 있음. 
 
@@ -510,3 +512,42 @@ package.json의 아래부분을
     이렇게 하면 watch - 수정,재시작 안해도됨.
 
     
+
+    sass의 좋은점?
+    selector를 father 요소 안에다 둘 수 있음.
+
+
+
+controller
+
+"/user/:id" - Using req.params.id
+"/user?id=123" - Using req.query.id
+
+post?
+get? 
+method="get" sends the data of the form on the url and method="post" sends it hidden from the user
+
+Mixins are useful when I want to reuse some HTML block that has same structure but different data
+
+Mongo is a database, Mongoose is how we talk to the database using JS
+
+schema Is an object that tells Mongoose the shape of the data that we will save
+
+To be able to hide strings from the version control systems - dotenv
+
+Date.now() executes the function immediately, Date.now waits for the function to be called.
+
+
+
+
+serialization?
+어떤 정보를 쿠키에게 주느냐(지금 웹브라우저에 있는 사용자(client)에 대해 어떤 정보를 가질 수 있느냐)
+정보(예를 들면 ID) -> cookie
+객체를 직렬화해서 전송가능한 형태로 만듦.
+
+deserialization
+cookie(id를 갖고있음)를 user로 convert하는 것
+직렬화된걸 다시 객체로 복원
+
+create 메소드는 mongoose에 있는 메소드입니다.
+register메소드는 passport-local-mongoose 패키지에 있는 메소드에요.
