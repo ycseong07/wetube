@@ -551,3 +551,52 @@ cookie(id를 갖고있음)를 user로 convert하는 것
 
 create 메소드는 mongoose에 있는 메소드입니다.
 register메소드는 passport-local-mongoose 패키지에 있는 메소드에요.
+
+nodejs 깔면 path함수 따라온다
+
+express는 session을 이용해 쿠키를 가져오고, 
+우리는 passport를 이용해서 session(이 가진 쿠키)을 이용하고, deserialize를 진행.
+
+
+★ schema.id-> passport(serialize()) -> cookie -> passport(session()) -> express -> passport(deserialize()) -> passport(authenticate)
+
+
+1. Create a schema and import passport-local-mongoose for using plugin can give diverse schema methods (we use this because we wanna use usernamefiled as email form)
+
+2. Passport's gonna activating serialize function will give ID (is mongoDB has automatically created) to cookie.
+
+3. session that contains cookie is gonna be sent to express server through passport.  
+(and a module named connect-mongo using MongoStore will save session that result is even when you refresh server, the cookie will be maintained normally.)
+
+import session from 'express-session';
+
+import MongoStore from 'connect-mongo';
+
+const CokieStore = MongoStore(session);
+
+app.use(session({
+    secret: process.env.COOKIE_SECRET,
+    resave: true,
+    saveUninitialized: false,
+    store: new CokieStore({ mongooseConnection: mongoose.connection })
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+4. deserialize function from passport will recognize user with ID from cookie in the session which is actually now in the server express.
+passport will deserialize the cookie with every request and will attach the user that it finds to req.user
+
+5. Finally, we can use authenticate('local', ) function, so login is enabled.
+
+
+local 인증방식은 id, password를 post보내고, mongoose가 체크해서 맞아! 하면
+passport가 쿠키생성
+
+깃헙인증방식은 사용자가 깃헙으로 가서 권한승인을 받음.
+깃헙이 사용자 정보를 우리에게 보내주면, 그 정보는 /auth/github/callback으로 옴.
+그러면 passport가 함수를 호출함. githubLoginCallback. passport.js에 우리가 넣은 함수
+그러면 이 함수가 사용자의 profile등을 받음.
+githubLoginCallback의 조건 중 하나는, cb(callback) 함수를 return 해야한다는 점임.
+error는 있는지, user는 있는지..
+그 후에 passport는 user를 취해 쿠키를 만들고, 저장. 저장된 쿠키를 브라우저로 전달.
